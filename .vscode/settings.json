@@ -1,0 +1,12 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  // Part of the TailwindCSS VSCode plugin installation
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  // CVA Custom config: https://cva.style/docs/installation
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ]
+}

@@ -21,8 +21,8 @@ const server = z.object({
   // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
   EMAIL_SERVER_USER: z.string().min(1),
   EMAIL_SERVER_PASSWORD: z.string().min(1),
-  EMAIL_SERVER_HOST: z.string().url(),
-  EMAIL_SERVER_PORT: z.number().min(1),
+  EMAIL_SERVER_HOST: z.string().min(1),
+  EMAIL_SERVER_PORT: z.string().min(1),
   EMAIL_FROM: z.string().min(1),
 });
 

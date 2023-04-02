@@ -1,3 +1,6 @@
+import { siteConfig } from "@/config/site";
+import { confirmEmailHtml, confirmEmailAsText } from "@/email/confirm-email";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { type GetServerSidePropsContext } from "next";
 import {
   getServerSession,
@@ -5,8 +8,7 @@ import {
   type DefaultSession,
 } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { env } from "~/env.mjs";
+import { createTransport } from "nodemailer";
 import { prisma } from "~/server/db";
 
 /**
@@ -50,13 +52,31 @@ export const authOptions: NextAuthOptions = {
     EmailProvider({
       server: {
         host: process.env.EMAIL_SERVER_HOST,
-        port: process.env.EMAIL_SERVER_PORT,
+        port: parseInt(process.env.EMAIL_SERVER_PORT || ""),
         auth: {
           user: process.env.EMAIL_SERVER_USER,
           pass: process.env.EMAIL_SERVER_PASSWORD,
         },
       },
       from: process.env.EMAIL_FROM,
+      sendVerificationRequest: async ({ identifier, url, provider }) => {
+        const transport = createTransport(provider.server);
+        const { host } = new URL(url);
+
+        const result = await transport.sendMail({
+          to: identifier,
+          from: provider.from,
+          subject: `Sign in to ${siteConfig.name}`,
+          text: confirmEmailAsText({ url, host }),
+          html: confirmEmailHtml({ url }),
+        });
+        const failed = result.rejected.concat(result.pending).filter(Boolean);
+        if (failed.length) {
+          throw new Error(
+            `Auth Email(s) (${failed.join(", ")}) could not be sent`
+          );
+        }
+      },
     }),
     /**
      * ...add more providers here.

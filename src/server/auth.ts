@@ -73,6 +73,11 @@ export const authOptions: NextAuthOptions = {
             name: siteConfig.name,
             address: env.EMAIL_FROM,
           },
+          headers: {
+            // Set this to prevent Gmail from threading emails.
+            // See https://stackoverflow.com/questions/23434110/force-emails-not-to-be-grouped-into-conversations/25435722.
+            "X-Entity-Ref-ID": new Date().getTime() + "",
+          },
           subject: `Sign in to ${siteConfig.shortName}`,
           text: confirmEmailAsText({ url, host }),
           html: confirmEmailHtml({ url }),

@@ -34,7 +34,10 @@ const Home: NextPage = () => {
               "Prisma",
               "RadixUI",
             ].map((tech) => (
-              <h4 className="bg-slate-100 dark:bg-slate-700 px-2 rounded-lg">
+              <h4
+                key={tech}
+                className="bg-slate-100 dark:bg-slate-700 px-2 rounded-lg"
+              >
                 {tech}
               </h4>
             ))}
@@ -112,7 +115,9 @@ const AuthShowcase: React.FC = () => {
   return (
     <p className="text-sm">
       <span className="font-mono bg-slate-200 dark:bg-slate-700 rounded-md px-4 py-2">
-        {sessionData && <span>Logged in as '{sessionData.user?.name}'</span>}
+        {sessionData && (
+          <span>Logged in as &apos;{sessionData.user?.name}&apos;</span>
+        )}
         {secretMessage && <span> - {secretMessage}</span>}
       </span>
     </p>

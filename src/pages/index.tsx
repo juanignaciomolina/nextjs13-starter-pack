@@ -1,3 +1,4 @@
+import { Icons } from "@/components/icons";
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
@@ -66,10 +67,16 @@ const Home: NextPage = () => {
                 tRPC
               </span>
               <span className="font-mono bg-slate-200 dark:bg-slate-700 rounded-r-md pr-4 pl-2 py-2">
-                "{hello.data ? hello.data.greeting : "Loading tRPC query..."}"
+                {hello.data ? (
+                  hello.data.greeting
+                ) : (
+                  <Icons.spinner className="h-4 w-4 animate-spin inline-block" />
+                )}
               </span>
             </p>
-            <AuthShowcase />
+            <div className="my-4">
+              <AuthShowcase />
+            </div>
           </div>
         </div>
       </main>
@@ -88,11 +95,11 @@ const AuthShowcase: React.FC = () => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-2xl text-white">
+    <p className="text-sm">
+      <span className="font-mono bg-slate-200 dark:bg-slate-700 rounded-md px-4 py-2">
         {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
         {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-    </div>
+      </span>
+    </p>
   );
 };

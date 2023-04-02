@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import { type AppType } from "next/app";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
+import { BreakpointIndicator } from "@/components/breakpoint-indicator";
 import { Toaster } from "@/components/ui/toaster";
 
 const fontSans = FontSans({
@@ -30,6 +31,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
           <Component {...pageProps} />
           <Toaster />
         </ThemeProvider>
+        <BreakpointIndicator />
       </SessionProvider>
       <Analytics />
     </>

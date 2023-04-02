@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import { type AppType } from "next/app";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
+import { Toaster } from "@/components/ui/toaster";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         `}</style>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Component {...pageProps} />
+          <Toaster />
         </ThemeProvider>
       </SessionProvider>
       <Analytics />

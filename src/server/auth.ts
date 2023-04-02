@@ -9,6 +9,7 @@ import {
 } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import { createTransport } from "nodemailer";
+import { env } from "~/env.mjs";
 import { prisma } from "~/server/db";
 
 /**
@@ -38,6 +39,9 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
+  pages: {
+    signIn: "/signin",
+  },
   callbacks: {
     session({ session, user }) {
       if (session.user) {
@@ -51,22 +55,25 @@ export const authOptions: NextAuthOptions = {
   providers: [
     EmailProvider({
       server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: parseInt(process.env.EMAIL_SERVER_PORT || ""),
+        host: env.EMAIL_SERVER_HOST,
+        port: parseInt(env.EMAIL_SERVER_PORT),
         auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD,
+          user: env.EMAIL_SERVER_USER,
+          pass: env.EMAIL_SERVER_PASSWORD,
         },
       },
-      from: process.env.EMAIL_FROM,
+      from: env.EMAIL_FROM,
       sendVerificationRequest: async ({ identifier, url, provider }) => {
         const transport = createTransport(provider.server);
         const { host } = new URL(url);
 
         const result = await transport.sendMail({
           to: identifier,
-          from: provider.from,
-          subject: `Sign in to ${siteConfig.name}`,
+          from: {
+            name: siteConfig.name,
+            address: env.EMAIL_FROM,
+          },
+          subject: `Sign in to ${siteConfig.shortName}`,
           text: confirmEmailAsText({ url, host }),
           html: confirmEmailHtml({ url }),
         });

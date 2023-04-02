@@ -89,7 +89,7 @@ export function confirmEmailHtml(params: { url: string }) {
       <i style="mso-font-width: -100%; letter-spacing: 32px; mso-text-raise: 30px" hidden>&nbsp;</i>
     <![endif]-->
                       <span style="mso-text-raise: 16px">
-                  Access ${siteConfig.name} &rarr;
+                  Access ${siteConfig.shortName} &rarr;
                 </span>
                       <!--[if mso]>
       <i style="mso-font-width: -100%; letter-spacing: 32px;" hidden>&nbsp;</i>
@@ -98,7 +98,7 @@ export function confirmEmailHtml(params: { url: string }) {
                   </div>
                   <div role="separator" style="background-color: #cbd5e1; height: 1px; line-height: 1px; margin: 32px 0">&zwj;</div>
                   <p style="margin: 0;">
-                    If you didn't sign up for ${siteConfig.name}, you can safely ignore this email.
+                    If you didn't sign up for ${siteConfig.shortName}, you can safely ignore this email.
                     <br>
                     <br>
                     Thanks, <br>The ${siteConfig.name} team

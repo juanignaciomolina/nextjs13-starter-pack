@@ -10,6 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.0.0",
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
     "@next-auth/prisma-adapter": "^1.0.5",
     "@next/font": "^13.2.4",
@@ -60,6 +61,7 @@
     "nodemailer": "^6.9.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.9",
     "superjson": "1.12.2",
     "tailwind-merge": "^1.11.0",
     "tailwindcss-animate": "^1.0.5",

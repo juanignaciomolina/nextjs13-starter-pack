@@ -1,6 +1,5 @@
 "use client";
 
-import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,6 +7,7 @@ import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { userAuthSchema } from "@/lib/validations/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 as Spinner } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import * as React from "react";
@@ -81,9 +81,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             )}
           </div>
           <Button disabled={isLoading}>
-            {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            )}
+            {isLoading && <Spinner className="mr-2 h-4 w-4 animate-spin" />}
             Sign In with Email
           </Button>
         </div>

@@ -1,6 +1,6 @@
 // Email HTML template generated usign https://maizzle.com/
 
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config/site"
 
 /**
  * Email HTML body
@@ -8,7 +8,7 @@ import { siteConfig } from "@/config/site";
  * Transactional confirm email template. Must provide an URL to get back after the confirmation.
  */
 export function confirmEmailHtml(params: { url: string }) {
-  const { url } = params;
+  const { url } = params
 
   return `
   <!DOCTYPE html>
@@ -116,7 +116,7 @@ export function confirmEmailHtml(params: { url: string }) {
   </div>
 </body>
 </html>
-  `;
+  `
 }
 
 /** Email Text body (fallback for email clients that don't render HTML, e.g. feature phones) */
@@ -124,8 +124,8 @@ export function confirmEmailAsText({
   url,
   host,
 }: {
-  url: string;
-  host: string;
+  url: string
+  host: string
 }) {
-  return `Sign in to ${host}\n${url}\n\n`;
+  return `Sign in to ${host}\n${url}\n\n`
 }

@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { Button } from "./ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "./ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,13 +9,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { LogOut, User } from "lucide-react";
-import { signIn, signOut, useSession } from "next-auth/react";
-import React from "react";
+} from "@/components/ui/dropdown-menu"
+import { LogOut, User } from "lucide-react"
+import { signIn, signOut, useSession } from "next-auth/react"
+import React from "react"
 
 const UserButton: React.FC = () => {
-  const { data: sessionData } = useSession();
+  const { data: sessionData } = useSession()
 
   if (sessionData)
     return (
@@ -38,7 +38,7 @@ const UserButton: React.FC = () => {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={() => {
-              void signOut();
+              void signOut()
             }}
           >
             <LogOut className="mr-2 h-4 w-4" />
@@ -46,13 +46,13 @@ const UserButton: React.FC = () => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-    );
+    )
 
   return (
     <Button variant="outline" onClick={() => void signIn()}>
       Sign In
     </Button>
-  );
-};
+  )
+}
 
-export default UserButton;
+export default UserButton

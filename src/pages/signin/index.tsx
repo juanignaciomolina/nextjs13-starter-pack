@@ -1,14 +1,14 @@
-import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
-import { UserAuthForm } from "@/components/user-auth-form";
-import { siteConfig } from "@/config/site";
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
+import { Icons } from "@/components/icons"
+import { Button } from "@/components/ui/button"
+import { UserAuthForm } from "@/components/user-auth-form"
+import { siteConfig } from "@/config/site"
+import { ChevronLeft } from "lucide-react"
+import Link from "next/link"
 
 export const metadata = {
   title: "Sign in",
   description: "Sign in to get started.",
-};
+}
 
 export default function SignInPage() {
   return (
@@ -50,5 +50,5 @@ export default function SignInPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

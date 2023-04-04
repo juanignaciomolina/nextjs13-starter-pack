@@ -1,7 +1,7 @@
-import UserButton from "./user-button";
-import { MainNav } from "@/components/main-nav";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { siteConfig } from "@/config/site";
+import UserButton from "./user-button"
+import { MainNav } from "@/components/main-nav"
+import { ThemeToggle } from "@/components/theme-toggle"
+import { siteConfig } from "@/config/site"
 
 export function SiteHeader() {
   return (
@@ -16,5 +16,5 @@ export function SiteHeader() {
         </div>
       </div>
     </header>
-  );
+  )
 }

@@ -1,16 +1,15 @@
-import { Icons } from "@/components/icons";
-import { Layout } from "@/components/layout";
-import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/config/site";
-import { Router } from "lucide-react";
-import { type NextPage } from "next";
-import { useSession } from "next-auth/react";
-import Head from "next/head";
-import Link from "next/link";
-import { api } from "~/utils/api";
+import { Icons } from "@/components/icons"
+import { Layout } from "@/components/layout"
+import { siteConfig } from "@/config/site"
+import { Router } from "lucide-react"
+import { type NextPage } from "next"
+import { useSession } from "next-auth/react"
+import Head from "next/head"
+import Link from "next/link"
+import { api } from "~/utils/api"
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC in the server" });
+  const hello = api.example.hello.useQuery({ text: "from tRPC in the server" })
 
   return (
     <Layout>
@@ -99,18 +98,18 @@ const Home: NextPage = () => {
         </div>
       </main>
     </Layout>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
 
 const AuthShowcase: React.FC = () => {
-  const { data: sessionData } = useSession();
+  const { data: sessionData } = useSession()
 
   const { data: secretMessage } = api.example.getSecretMessage.useQuery(
     undefined, // no input
     { enabled: sessionData?.user !== undefined }
-  );
+  )
 
   return (
     <p className="text-sm">
@@ -121,5 +120,5 @@ const AuthShowcase: React.FC = () => {
         {secretMessage && <span> - {secretMessage}</span>}
       </span>
     </p>
-  );
-};
+  )
+}
